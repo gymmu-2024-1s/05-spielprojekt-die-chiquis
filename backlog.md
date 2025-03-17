@@ -10,3 +10,7 @@
 - [ ] Komponenten für Items hinzufügen.
 - [ ] Dialogsystem hinzufügen.
 - [ ] Inventar hinzufügen.
+- [ ] Links Funktion
+- [ ] Rechts Funktion
+- [ ] Spring Funktion
+- [ ] Gravitation Funktion
