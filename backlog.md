@@ -10,8 +10,7 @@
 - [ ] Komponenten für Items hinzufügen.
 - [ ] Dialogsystem hinzufügen.
 - [ ] Inventar hinzufügen.
-- [ ] Left Funktion
-- [ ] Right Funktion
+- [ ] Run Funktion
 - [ ] jump Funktion
 - [ ] Gravitation Funktion
 - [ ] Down Funktion
