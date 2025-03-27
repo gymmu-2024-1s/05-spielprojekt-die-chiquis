@@ -6,6 +6,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   hp = 10
   maxHp = 100
   speed = 100
+  jumpforce = 200
 
   constructor(scene, x, y) {
     super(scene, x, y, "player")
@@ -52,35 +53,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
 
   update() {
-    const { left, right, up, down } = this.cursor
+    const { space, down } = this.cursor
     let isIdle = true
 
     this.body.setVelocityX(200)
 
-    if (left.isDown) {
-      this.body.setVelocityX(-this.speed)
-      if (isIdle) this.anims.play("player_left", true)
-      isIdle = false
-    }
-    if (right.isDown) {
-      this.body.setVelocityX(this.speed)
-      if (isIdle) this.anims.play("player_right", true)
-      isIdle = false
+    if (down.isDown) {
+      this.jumpforce = this.jumpforce / 2
     }
 
-    if (up.isDown) {
-      this.body.setVelocityY(-this.speed)
+    if (space.isDown) {
+      this.body.setVelocityY(-this.jumpforce)
       if (isIdle) this.anims.play("player_up", true)
       isIdle = false
-    }
-    if (down.isDown) {
-      this.body.setVelocityY(this.speed)
-      if (isIdle) this.anims.play("player_down", true)
-      isIdle = false
-    }
-
-    if (isIdle) {
-      this.anims.play("player_idle", true)
     }
   }
 
