@@ -16,6 +16,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setSize(24, 24, false)
     this.setOffset(4, 8)
 
+    this.setScale(2)
+
     this.setControls()
 
     // Hier schicken wir ein Ereignis los. Phaser schnappt das auf, und führt
