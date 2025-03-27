@@ -36,6 +36,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.speed = Math.min(this.speed + value, 960)
   }
 
+  increaseJumpforce(val) {
+    this.jumpforce = this.jumpforce + val
+    if (this.jumpforce >= 400) {
+      this.jumpforce = 400
+    }
+  }
+
   /**
    * Vermindere die Geschwindigkeit des Spielers.
    *
@@ -46,6 +53,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
    */
   decreaseSpeed(value) {
     this.speed = Math.max(100, this.speed - value)
+  }
+  decreaseJumpforce(val) {
+    this.jumpforce = this.jumpforce + val
+    if (this.jumpscore <= 200) {
+      this.jumpforce = 200
+    }
   }
 
   setControls() {
