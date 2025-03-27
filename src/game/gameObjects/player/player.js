@@ -55,7 +55,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const { left, right, up, down } = this.cursor
     let isIdle = true
 
-    this.body.setVelocityX(0)
+    this.body.setVelocityX(200)
     this.body.setVelocityY(0)
 
     if (left.isDown) {
