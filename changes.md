@@ -12,3 +12,12 @@
 - Spielname geändert
 - Spielidee beschrieben
 - Steuerung beschrieben
+
+## Version 0.3.0
+
+- Run Funktion
+- Jump Funktion
+- Gravitations Funktion
+- Spiel Intro geschrieben
+- Spielprinzip erweitert
+- Spritesheet (Charakter) geändert
