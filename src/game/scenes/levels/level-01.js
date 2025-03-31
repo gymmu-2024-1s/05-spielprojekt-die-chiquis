@@ -70,6 +70,7 @@ export default class Level01 extends Base2DScene {
       this.player.increaseJumpforce(100)
       this.player.heal(item.props.restoreHp || 0)
     } else if (item instanceof Mushroom) {
+      this.player.decreaseJumpforce(100)
       // Das Objekt ist von der Klasse `Pilz`
       //this.player.decreaseSpeed(150)
 
