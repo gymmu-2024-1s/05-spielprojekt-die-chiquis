@@ -82,6 +82,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       if (isIdle) this.anims.play("player_up", true)
       isIdle = false
     }
+
+    if (isIdle === true) {
+      this.anims.play("player_right", true)
+    }
   }
 
   /**
