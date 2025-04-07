@@ -175,4 +175,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       this.keys[keyName] = null
     }
   }
+  
+  increaseAttack(amount) {
+    this.attackPower = Math.min(this.attackPower + amoubt, 100);
+  }
 }
