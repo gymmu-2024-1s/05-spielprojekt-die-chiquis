@@ -21,3 +21,5 @@
 - Spiel Intro geschrieben
 - Spielprinzip erweitert
 - Spritesheet (Charakter) geändert
+- präsentation geändert
+- attack funktion
