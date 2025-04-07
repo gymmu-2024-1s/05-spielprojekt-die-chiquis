@@ -89,8 +89,8 @@ export default class LoadingScene extends Phaser.Scene {
     this.anims.create({
       key: "player_up",
       frames: this.anims.generateFrameNumbers("player", {
-        start: 9,
-        end: 11,
+        start: 10,
+        end: 10,
       }),
       frameRate: 10,
       repeat: -1,
