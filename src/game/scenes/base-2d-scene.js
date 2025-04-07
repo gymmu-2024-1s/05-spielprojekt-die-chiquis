@@ -169,20 +169,21 @@ export default class Base2DScene extends Phaser.Scene {
     enemy.destroy()
 
     actor.damage(10)
+
+    if (item instanceof Flower) {
+      // Das Objekt ist von der Klasse `Flower`
+      this.player.addKey("level-02")
+      //this.player.increaseSpeed(200)
+      this.player.increaseJumpforce(100)
+      this.player.heal(item.props.restoreHp || 0)
+    } else if (item instanceof Mushroom) {
+      // Das Objekt ist von der Klasse `Pilz`
+      //this.player.decreaseSpeed(150)
+
+      this.player.decreaseJumpforce(-100)
+      this.player.damage(item.props.damageHp || 0)
+    }
   }
-
-   if (item instanceof Flower) {
-        // Das Objekt ist von der Klasse `Flower`
-        this.player.addKey("level-02")
-        //this.player.increaseSpeed(200)
-        this.player.increaseJumpforce(100)
-        this.player.heal(item.props.restoreHp || 0)
-      } else if (item instanceof Mushroom) {
-        // Das Objekt ist von der Klasse `Pilz`
-        //this.player.decreaseSpeed(150)
-
-        this.player.decreaseJumpforce(-100)
-        this.player.damage(item.props.damageHp || 0)
 
   /**
    * Diese Methode wird immer dann aufgerufen, wenn ein Spieler mit einer Türe
