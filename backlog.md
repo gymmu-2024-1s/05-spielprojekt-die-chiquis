@@ -13,5 +13,6 @@
 - [x] Run Funktion
 - [x] jump Funktion
 - [x] Gravitation Funktion
-- [ ] attack
+- [x] attack
 - [ ] Level restart
+- [] game over
