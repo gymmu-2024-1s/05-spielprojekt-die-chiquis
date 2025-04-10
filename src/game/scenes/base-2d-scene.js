@@ -1,6 +1,8 @@
 import Phaser from "phaser"
 import Mushroom from "../gameObjects/pickups/mushroom"
 import Flower from "../gameObjects/pickups/flower"
+import Stone from "../gameObejcts/pickups/stone"
+import Tree from "../gameObejcts/pickups/tree"
 import Cave from "../gameObjects/doors/cave"
 import Player from "../gameObjects/player/player"
 import NPC from "../gameObjects/player/npc"
@@ -100,6 +102,9 @@ export default class Base2DScene extends Phaser.Scene {
   createMapObjects() {
     this.createObjects(this.map, "Items", "Mushroom", Mushroom, this.items)
     this.createObjects(this.map, "Items", "Flower", Flower, this.items)
+    this.createObjects(this.map, "Items", "Stone", Stone, this.items)
+    this.createObjects(this.map, "Items", "Tree", Tree, this.items)
+    this.createObjects(this.map, "Items", "Tree-stem", Tree - stem, this.items)
   }
 
   createCamera() {
@@ -144,6 +149,7 @@ export default class Base2DScene extends Phaser.Scene {
 
   npcCollideObstacles(npc, obstacle) {
     if (npc == null) return
+    console.log("Game Over")
     npc.move = "idle"
   }
 
@@ -183,6 +189,12 @@ export default class Base2DScene extends Phaser.Scene {
       this.player.decreaseJumpforce(-100)
       this.player.damage(item.props.damageHp || 0)
     }
+  }
+  if (item instanceof Stone) {
+    this.player.gameOver
+  }
+  if (item instanceof Tree) {
+    this.player.gameOver
   }
 
   /**
@@ -269,5 +281,34 @@ export default class Base2DScene extends Phaser.Scene {
         targetGroup.add(new objectClass(this, obj.x, obj.y, obj.properties))
       })
     }
+  }
+  checkCollision(player, obstacle) {
+    if (obstacle instanceof Stone || obstacle instanceof Tree) {
+      // Wenn der Spieler mit einem Stein oder Baum kollidiert, Game Over
+      this.gameOver(player)
+    }
+  }
+  gameOver(player) {
+    // Zeige eine Game Over Nachricht oder Bildschirm an
+    console.log("Game Over!")
+    player.destroy() // Zerstöre das Spielerobjekt oder stoppe das Spiel
+
+    // Beispiel: Game Over Bildschirm anzeigen
+    this.scene.pause() // Pausiere die Szene
+    this.showGameOverScreen() // Zeige den Game Over-Bildschirm an
+  }
+  showGameOverScreen() {
+    // Zeige einen Text oder UI an, der dem Spieler mitteilt, dass das Spiel vorbei ist
+    this.text = this.add
+      .text(320, 240, "Game Over\nDrücke [R] zum Neustart", {
+        font: "32px Arial",
+        fill: "#ff0000",
+      })
+      .setOrigin(0.5)
+
+    // Warten auf eine Eingabe, um das Spiel neu zu starten
+    this.input.keyboard.once("keydown-R", () => {
+      this.scene.restart() // Startet die Szene neu
+    })
   }
 }
