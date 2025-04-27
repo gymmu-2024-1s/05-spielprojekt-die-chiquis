@@ -7,6 +7,7 @@ import Level03 from "./scenes/levels/level-03.js"
 import UIScene from "./scenes/ui-scene.js"
 import DebugScene from "./scenes/debug-scene.js"
 import Level00 from "./scenes/levels/level-00.js"
+import GameOverScene from "./scenes/game-over-scene.js"
 
 const config = {
   type: Phaser.AUTO,
@@ -21,6 +22,7 @@ const config = {
     LoadingScene,
     UIScene,
     DebugScene,
+    GameOverScene,
     ,
     Level00,
     Level01,
