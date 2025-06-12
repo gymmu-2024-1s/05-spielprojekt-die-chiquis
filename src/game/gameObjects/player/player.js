@@ -6,6 +6,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   hp = 10
   maxHp = 100
   speed = 100
+  jumpforce = 200
 
   constructor(scene, x, y) {
     super(scene, x, y, "player")
@@ -15,6 +16,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setOrigin(0.5, 0.5)
     this.setSize(24, 24, false)
     this.setOffset(4, 8)
+
+    this.setScale(2)
 
     this.setControls()
 
@@ -35,6 +38,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.speed = Math.min(this.speed + value, 960)
   }
 
+  increaseJumpforce(val) {
+    this.jumpforce = this.jumpforce + val
+    if (this.jumpforce >= 400) {
+      this.jumpforce = 400
+    }
+  }
+
   /**
    * Vermindere die Geschwindigkeit des Spielers.
    *
@@ -46,42 +56,35 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   decreaseSpeed(value) {
     this.speed = Math.max(100, this.speed - value)
   }
+  decreaseJumpforce(val) {
+    this.jumpforce = this.jumpforce + val
+    if (this.jumpscore <= 200) {
+      this.jumpforce = 200
+    }
+  }
 
   setControls() {
     this.cursor = this.scene.input.keyboard.createCursorKeys()
   }
 
   update() {
-    const { left, right, up, down } = this.cursor
+    const { space, down } = this.cursor
     let isIdle = true
 
-    this.body.setVelocityX(0)
-    this.body.setVelocityY(0)
+    this.body.setVelocityX(200)
 
-    if (left.isDown) {
-      this.body.setVelocityX(-this.speed)
-      if (isIdle) this.anims.play("player_left", true)
-      isIdle = false
-    }
-    if (right.isDown) {
-      this.body.setVelocityX(this.speed)
-      if (isIdle) this.anims.play("player_right", true)
-      isIdle = false
+    if (down.isDown) {
+      this.jumpforce = this.jumpforce / 2
     }
 
-    if (up.isDown) {
-      this.body.setVelocityY(-this.speed)
+    if (space.isDown) {
+      this.body.setVelocityY(-this.jumpforce)
       if (isIdle) this.anims.play("player_up", true)
       isIdle = false
     }
-    if (down.isDown) {
-      this.body.setVelocityY(this.speed)
-      if (isIdle) this.anims.play("player_down", true)
-      isIdle = false
-    }
 
-    if (isIdle) {
-      this.anims.play("player_idle", true)
+    if (isIdle === true) {
+      this.anims.play("player_right", true)
     }
   }
 
@@ -171,5 +174,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     if (this.keys[keyName] <= 0) {
       this.keys[keyName] = null
     }
+  }
+  
+  increaseAttack(amount) {
+    this.attackPower = Math.min(this.attackPower + amoubt, 100);
   }
 }
